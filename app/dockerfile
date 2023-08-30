@@ -1,0 +1,17 @@
+# Use a imagem base do Python
+FROM python:3.8-slim
+
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copia os arquivos da aplicação para o diretório de trabalho
+COPY . /app/
+
+# Instala as dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expor a porta usada pelo Streamlit
+EXPOSE 8501
+
+# Iniciar a aplicação Streamlit
+CMD ["streamlit", "run", "--server.port", "8501", "testStreamlit.py"]
